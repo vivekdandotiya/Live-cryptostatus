@@ -1,5 +1,4 @@
-
-        :root {
+ :root {
             --bg-primary: #0a0e14;
             --bg-secondary: #151a23;
             --bg-card: #1a1f2e;
@@ -55,4 +54,139 @@
 
         .price-flash {
             animation: priceFlash 0.5s ease-in-out;
+        }
+
+        /* Card hover effect */
+        .crypto-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crypto-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            transition: left 0.5s;
+        }
+
+        .crypto-card:hover::before {
+            left: 100%;
+        }
+
+        .crypto-card:hover {
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Search bar styling */
+        .search-input {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Loading skeleton */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-secondary) 50%, var(--bg-card) 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        /* Badge animations */
+        .rank-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #000;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        /* Glowing effect for top cryptos */
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-blue), var(--accent-green));
+            border-radius: 16px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s;
+        }
+
+        .glow-effect:hover::after {
+            opacity: 0.3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .crypto-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Number formatting */
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Price direction indicators */
+        .price-up {
+            color: var(--accent-green);
+        }
+
+        .price-down {
+            color: var(--accent-red);
+        }
+
+        .price-neutral {
+            color: var(--text-primary);
         }

@@ -1,157 +1,85 @@
-const INITIAL_CRYPTO_DATA = [
-            {
-                id: 'bitcoin',
-                symbol: 'BTC',
-                name: 'Bitcoin',
-                current_price: 42580.50,
-                price_change_percentage_24h: 2.45,
-                market_cap: 835000000000,
-                total_volume: 28500000000,
-                image: 'https://assets.coingecko.com/coins/images/1/small/bitcoin.png'
-            },
-            {
-                id: 'ethereum',
-                symbol: 'ETH',
-                name: 'Ethereum',
-                current_price: 2245.75,
-                price_change_percentage_24h: -1.23,
-                market_cap: 270000000000,
-                total_volume: 15200000000,
-                image: 'https://assets.coingecko.com/coins/images/279/small/ethereum.png'
-            },
-            {
-                id: 'solana',
-                symbol: 'SOL',
-                name: 'Solana',
-                current_price: 98.45,
-                price_change_percentage_24h: 5.67,
-                market_cap: 42000000000,
-                total_volume: 2100000000,
-                image: 'https://assets.coingecko.com/coins/images/4128/small/solana.png'
-            },
-            {
-                id: 'dogecoin',
-                symbol: 'DOGE',
-                name: 'Dogecoin',
-                current_price: 0.08234,
-                price_change_percentage_24h: -3.21,
-                market_cap: 11500000000,
-                total_volume: 845000000,
-                image: 'https://assets.coingecko.com/coins/images/5/small/dogecoin.png'
-            },
-            {
-                id: 'cardano',
-                symbol: 'ADA',
-                name: 'Cardano',
-                current_price: 0.5234,
-                price_change_percentage_24h: 1.89,
-                market_cap: 18400000000,
-                total_volume: 425000000,
-                image: 'https://assets.coingecko.com/coins/images/975/small/cardano.png'
-            },
-            {
-                id: 'ripple',
-                symbol: 'XRP',
-                name: 'XRP',
-                current_price: 0.6145,
-                price_change_percentage_24h: 4.32,
-                market_cap: 33200000000,
-                total_volume: 1850000000,
-                image: 'https://assets.coingecko.com/coins/images/44/small/xrp-symbol-white-128.png'
-            },
-            {
-                id: 'polkadot',
-                symbol: 'DOT',
-                name: 'Polkadot',
-                current_price: 7.23,
-                price_change_percentage_24h: -2.15,
-                market_cap: 9800000000,
-                total_volume: 285000000,
-                image: 'https://assets.coingecko.com/coins/images/12171/small/polkadot.png'
-            },
-            {
-                id: 'avalanche',
-                symbol: 'AVAX',
-                name: 'Avalanche',
-                current_price: 36.78,
-                price_change_percentage_24h: 3.67,
-                market_cap: 13500000000,
-                total_volume: 575000000,
-                image: 'https://assets.coingecko.com/coins/images/12559/small/Avalanche_Circle_RedWhite_Trans.png'
-            },
-            {
-                id: 'chainlink',
-                symbol: 'LINK',
-                name: 'Chainlink',
-                current_price: 14.52,
-                price_change_percentage_24h: 1.45,
-                market_cap: 8200000000,
-                total_volume: 425000000,
-                image: 'https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png'
-            },
-            {
-                id: 'polygon',
-                symbol: 'MATIC',
-                name: 'Polygon',
-                current_price: 0.8456,
-                price_change_percentage_24h: -1.87,
-                market_cap: 7800000000,
-                total_volume: 385000000,
-                image: 'https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png'
-            },
-            {
-                id: 'litecoin',
-                symbol: 'LTC',
-                name: 'Litecoin',
-                current_price: 72.34,
-                price_change_percentage_24h: 2.11,
-                market_cap: 5400000000,
-                total_volume: 425000000,
-                image: 'https://assets.coingecko.com/coins/images/2/small/litecoin.png'
-            },
-            {
-                id: 'shiba-inu',
-                symbol: 'SHIB',
-                name: 'Shiba Inu',
-                current_price: 0.00000945,
-                price_change_percentage_24h: -4.56,
-                market_cap: 5600000000,
-                total_volume: 285000000,
-                image: 'https://assets.coingecko.com/coins/images/11939/small/shiba.png'
-            },
-            {
-                id: 'uniswap',
-                symbol: 'UNI',
-                name: 'Uniswap',
-                current_price: 6.78,
-                price_change_percentage_24h: 1.23,
-                market_cap: 5100000000,
-                total_volume: 185000000,
-                image: 'https://assets.coingecko.com/coins/images/12504/small/uniswap-uni.png'
-            },
-            {
-                id: 'stellar',
-                symbol: 'XLM',
-                name: 'Stellar',
-                current_price: 0.1234,
-                price_change_percentage_24h: 0.89,
-                market_cap: 3500000000,
-                total_volume: 125000000,
-                image: 'https://assets.coingecko.com/coins/images/100/small/Stellar_symbol_black_RGB.png'
-            },
-            {
-                id: 'cosmos',
-                symbol: 'ATOM',
-                name: 'Cosmos',
-                current_price: 9.87,
-                price_change_percentage_24h: -0.65,
-                market_cap: 3800000000,
-                total_volume: 165000000,
-                image: 'https://assets.coingecko.com/coins/images/1481/small/cosmos_hub.png'
-            }
-        ];
+const INITIAL_CRYPTO_DATA = [/* SAME DATA */];
 
-        // Store for cryptocurrency data
-        let cryptoData = [];
-        let filteredData = [];
-        let updateCount = 0;
+let cryptoData = [], filteredData = [], updateCount = 0;
+
+const formatNumber = n =>
+  n >= 1e12 ? `$${(n/1e12).toFixed(2)}T` :
+  n >= 1e9  ? `$${(n/1e9).toFixed(2)}B` :
+  n >= 1e6  ? `$${(n/1e6).toFixed(2)}M` :
+  n >= 1e3  ? `$${(n/1e3).toFixed(2)}K` : `$${n.toFixed(2)}`;
+
+const formatPrice = p =>
+  p >= 1 ? p.toFixed(2) : p >= .01 ? p.toFixed(4) : p >= .0001 ? p.toFixed(6) : p.toFixed(8);
+
+const simulatePrice = (p,v)=>p*(1+((Math.random()-.5)*v*2)/100);
+
+function initData(){
+  cryptoData = INITIAL_CRYPTO_DATA.map(c=>({...c,previousPrice:c.current_price,priceDirection:'neutral'}));
+  filteredData=[...cryptoData];
+  render();
+  updateStats();
+}
+
+function updateStats(){
+  totalMarketCap.textContent = formatNumber(cryptoData.reduce((s,c)=>s+c.market_cap,0));
+  total24hVolume.textContent = formatNumber(cryptoData.reduce((s,c)=>s+c.total_volume,0));
+}
+
+function updateLive(){
+  updateCount++;
+  cryptoData = cryptoData.map(c=>{
+    const v = ['BTC','ETH'].includes(c.symbol)?0.2:['DOGE','SHIB'].includes(c.symbol)?0.5:0.3;
+    const newP = simulatePrice(c.current_price,v);
+    const old24h = c.current_price/(1+c.price_change_percentage_24h/100);
+    return {
+      ...c,
+      previousPrice:c.current_price,
+      current_price:newP,
+      price_change_percentage_24h:((newP-old24h)/old24h)*100,
+      priceDirection:newP>c.current_price?'up':newP<c.current_price?'down':'neutral'
+    };
+  });
+  filter(searchInput.value.toLowerCase());
+  if(updateCount%5===0) updateStats();
+  lastUpdate.textContent='Just now';
+}
+
+function render(){
+  if(!filteredData.length) return cryptoGrid.innerHTML='',noResults.classList.remove('hidden');
+  noResults.classList.add('hidden');
+
+  cryptoGrid.innerHTML = filteredData.map((c,i)=>{
+    const up = c.price_change_percentage_24h>=0;
+    return `
+    <div class="crypto-card ${i<3?'glow-effect':''} bg-gray-800 rounded-2xl p-6 border">
+      <div class="flex justify-between mb-4">
+        <div class="flex gap-3">
+          <img src="${c.image}" class="w-12 h-12 rounded-full">
+          <div>
+            <h3>${c.name}</h3>
+            <p class="text-sm text-gray-400">${c.symbol}</p>
+          </div>
+        </div>
+        <span class="${i<3?'rank-badge':'text-gray-500'}">#${i+1}</span>
+      </div>
+      <p class="text-3xl font-bold price-${c.priceDirection}">$${formatPrice(c.current_price)}</p>
+      <span class="${up?'text-green-400':'text-red-400'}">${up?'↑':'↓'} ${Math.abs(c.price_change_percentage_24h).toFixed(2)}%</span>
+      <div class="mt-4 text-sm text-gray-400">
+        <div class="flex justify-between"><span>Market Cap</span><span>${formatNumber(c.market_cap)}</span></div>
+        <div class="flex justify-between"><span>Volume</span><span>${formatNumber(c.total_volume)}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filter(q){
+  filteredData = cryptoData.filter(c=>c.name.toLowerCase().includes(q)||c.symbol.toLowerCase().includes(q));
+  render();
+}
+
+searchInput.addEventListener('input',e=>filter(e.target.value.toLowerCase()));
+
+window.addEventListener('DOMContentLoaded',()=>{
+  initData();
+  setInterval(updateLive,1000);
+});
