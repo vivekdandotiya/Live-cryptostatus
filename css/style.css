@@ -97,3 +97,59 @@ body {
   font-size: 13px;
   color: #8b92a7;
 }
+
+.crypto-card {
+  background: #151a23;
+  border: 1px solid #2a3142;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coin-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.coin-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1f2933;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.coin-text h4 {
+  font-size: 16px;
+}
+
+.coin-text span {
+  font-size: 12px;
+  color: #8b92a7;
+}
+
+.coin-right {
+  text-align: right;
+}
+
+.coin-price {
+  font-weight: 600;
+}
+
+.coin-change {
+  font-size: 13px;
+}
+
+.coin-change.up {
+  color: #00ff88;
+}
+
+.coin-change.down {
+  color: #ff4757;
+}
