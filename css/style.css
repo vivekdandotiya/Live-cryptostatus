@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0a0e14;
+  color: #e6e8ec;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.header {
+  border-bottom: 1px solid #2a3142;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.brand h1 {
+  font-size: 22px;
+}
+
+.brand p {
+  font-size: 12px;
+  color: #8b92a7;
+}
+
+.search input {
+  padding: 8px 12px;
+  background: #151a23;
+  border: 1px solid #2a3142;
+  border-radius: 6px;
+  color: #e6e8ec;
+}
+
+.search input:focus {
+  outline: none;
+}
+
+.market-stats {
+  margin-top: 30px;
+}
+
+.market-stats .container {
+  display: flex;
+  gap: 16px;
+}
+
+.stat-box {
+  flex: 1;
+  background: #151a23;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.stat-box p {
+  font-size: 13px;
+  color: #8b92a7;
+}
+
+.stat-box h3 {
+  margin-top: 4px;
+  font-size: 18px;
+}
+
+.crypto-list {
+  margin-top: 40px;
+}
+
+.crypto-list h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.crypto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.footer {
+  margin-top: 60px;
+  padding: 20px 0;
+  text-align: center;
+  border-top: 1px solid #2a3142;
+  font-size: 13px;
+  color: #8b92a7;
+}
