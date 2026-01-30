@@ -4,119 +4,92 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crypto Live</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body>
+    
+    <header class="border-b border-gray-800 backdrop-blur-sm bg-opacity-80 sticky top-0 z-50" style="background: rgba(10, 14, 20, 0.9);">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-display text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                            CryptoFlow
+                        </h1>
+                        <p class="text-xs text-gray-400 font-mono">Live Market Data</p>
+                    </div>
+                </div>
 
-  <header class="header">
-    <div class="container">
+                <div class="flex gap-4 text-sm">
+                    <div class="bg-gray-800 bg-opacity-50 px-4 py-2 rounded-lg">
+                        <p class="text-gray-400 text-xs">Total Market Cap</p>
+                        <p class="font-mono font-semibold text-blue-400" id="totalMarketCap">$2.1T</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 px-4 py-2 rounded-lg">
+                        <p class="text-gray-400 text-xs">24h Volume</p>
+                        <p class="font-mono font-semibold text-purple-400" id="total24hVolume">$98.5B</p>
+                    </div>
+                </div>
+            </div>
 
-      <div class="brand">
-        <h1>CryptoLive</h1>
-        <p>Live Crypto Market</p>
-      </div>
+            <div class="mt-6">
+                <div class="relative max-w-2xl mx-auto">
+                    <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Search cryptocurrency by name or symbol..."
+                        class="search-input w-full pl-12 pr-4 py-4 rounded-xl font-medium"
+                    >
+                </div>
+            </div>
+        </div>
+    </header>
 
-      <div class="search">
-        <input type="text" placeholder="Search crypto..." />
-      </div>
-
-    </div>
-  </header>
-
-  <main>
-
-    <section class="market-stats">
-      <div class="container">
-
-        <div class="stat-box">
-          <p>Total Market Cap</p>
-          <h3>$2.1T</h3>
+    <main class="container mx-auto px-4 py-8">
+        
+        <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-500 rounded-full pulse"></div>
+                <span class="text-sm text-gray-400">Live prices updating every second</span>
+            </div>
+            <div class="text-sm text-gray-500 font-mono" id="lastUpdate">Just now</div>
         </div>
 
-        <div class="stat-box">
-          <p>24h Volume</p>
-          <h3>$98B</h3>
+        <div id="cryptoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         </div>
 
-      </div>
-    </section>
-
-    <section class="crypto-list">
-      <div class="container">
-
-        <h2>Top Cryptocurrencies</h2>
-
-        <div class="crypto-grid">
-
-          <div class="crypto-card">
-            <div class="coin-left">
-              <div class="coin-logo">₿</div>
-              <div class="coin-text">
-                <h4>Bitcoin</h4>
-                <span>BTC</span>
-              </div>
-            </div>
-            <div class="coin-right">
-              <p class="coin-price">$42,580.50</p>
-              <span class="coin-change up">+2.45%</span>
-            </div>
-          </div>
-
-          <div class="crypto-card">
-            <div class="coin-left">
-              <div class="coin-logo">Ξ</div>
-              <div class="coin-text">
-                <h4>Ethereum</h4>
-                <span>ETH</span>
-              </div>
-            </div>
-            <div class="coin-right">
-              <p class="coin-price">$2,245.75</p>
-              <span class="coin-change down">-1.23%</span>
-            </div>
-          </div>
-
-          <div class="crypto-card">
-            <div class="coin-left">
-              <div class="coin-logo">◎</div>
-              <div class="coin-text">
-                <h4>Solana</h4>
-                <span>SOL</span>
-              </div>
-            </div>
-            <div class="coin-right">
-              <p class="coin-price">$98.45</p>
-              <span class="coin-change up">+5.67%</span>
-            </div>
-          </div>
-
-          <div class="crypto-card">
-            <div class="coin-left">
-              <div class="coin-logo">Ð</div>
-              <div class="coin-text">
-                <h4>Dogecoin</h4>
-                <span>DOGE</span>
-              </div>
-            </div>
-            <div class="coin-right">
-              <p class="coin-price">$0.0823</p>
-              <span class="coin-change down">-3.21%</span>
-            </div>
-          </div>
-
+        <div id="noResults" class="hidden text-center py-20">
+            <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h3 class="text-xl font-bold text-gray-400 mb-2">No cryptocurrencies found</h3>
+            <p class="text-gray-500">Try searching with a different keyword</p>
         </div>
+    </main>
 
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <p>© 2026 CryptoLive</p>
-    <p>LALA.. ghop ghop ghop </p>
-  </footer>
+    <footer class="border-t border-gray-800 mt-16 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm">
+                Data updates every second • Realistic price simulation
+            </p>
+            <p class="text-gray-600 text-xs mt-2">
+                © 2026 CryptoFlow. Built for educational purposes.
+            </p>
+        </div>
+    </footer>
 
 </body>
 </html>
