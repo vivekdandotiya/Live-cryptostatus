@@ -1,192 +1,215 @@
- :root {
-            --bg-primary: #0a0e14;
-            --bg-secondary: #151a23;
-            --bg-card: #1a1f2e;
-            --bg-card-hover: #222837;
-            --text-primary: #e6e8ec;
-            --text-secondary: #8b92a7;
-            --accent-green: #00ff88;
-            --accent-red: #ff4757;
-            --accent-blue: #3b82f6;
-            --border-color: #2a3142;
-        }
+:root {
+  --bg-primary: #0b0f14;
+  --bg-secondary: #11161d;
+  --bg-card: #151a23;
+  --bg-card-hover: #1d2430;
+  --text-primary: #e6e8ec;
+  --text-secondary: #8b92a7;
+  --accent-red: #ff2e2e;
+  --accent-red-soft: #ff5c5c;
+  --accent-green: #00ff88;
+  --border-color: #242b3a;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Syne', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            overflow-x: hidden;
-        }
+body {
+  font-family: 'Syne', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
 
-        /* Animated gradient background */
-        .bg-animated {
-            background: linear-gradient(135deg, #0a0e14 0%, #151a23 50%, #0a0e14 100%);
-            background-size: 200% 200%;
-            animation: gradientShift 15s ease infinite;
-        }
+.bg-animated {
+  background: linear-gradient(135deg, #232b4dd7 0%, #4b150eb8 50%, #05070a 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 14s ease infinite;
+}
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
 
-        /* Typography */
-        .font-display {
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-        }
+.font-display {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+}
 
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
 
-        /* Price change animation */
-        @keyframes priceFlash {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
+.search-input {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  transition: all 0.3s;
+}
 
-        .price-flash {
-            animation: priceFlash 0.5s ease-in-out;
-        }
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
 
-        /* Card hover effect */
-        .crypto-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-red);
+  box-shadow: 0 0 0 3px rgba(255, 46, 46, 0.15);
+}
 
-        .crypto-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-            transition: left 0.5s;
-        }
+.crypto-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
 
-        .crypto-card:hover::before {
-            left: 100%;
-        }
+.crypto-card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
 
-        .crypto-card:hover {
-            transform: translateY(-4px);
-            background: var(--bg-card-hover);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
+.crypto-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+  transition: left 0.6s;
+}
 
-        /* Search bar styling */
-        .search-input {
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
-            color: var(--text-primary);
-            transition: all 0.3s;
-        }
+.crypto-card:hover::before {
+  left: 100%;
+}
 
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
+.price-up {
+  color: var(--accent-green);
+}
 
-        /* Loading skeleton */
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
+.price-down {
+  color: var(--accent-red);
+}
 
-        .skeleton {
-            background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-secondary) 50%, var(--bg-card) 75%);
-            background-size: 1000px 100%;
-            animation: shimmer 2s infinite;
-        }
+.price-neutral {
+  color: var(--text-primary);
+}
 
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+.glow-effect::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--accent-red), var(--accent-red-soft));
+  border-radius: 16px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s;
+}
 
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
+.glow-effect:hover::after {
+  opacity: 0.35;
+}
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 4px;
-        }
+.rank-badge {
+  background: linear-gradient(135deg, var(--accent-red), var(--accent-red-soft));
+  color: #000;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+}
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-secondary);
-        }
+.pulse {
+  animation: pulse 2s infinite;
+}
 
-        /* Badge animations */
-        .rank-badge {
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #000;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-        }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
 
-        /* Glowing effect for top cryptos */
-        .glow-effect {
-            position: relative;
-        }
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-        .glow-effect::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--accent-blue), var(--accent-green));
-            border-radius: 16px;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s;
-        }
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
 
-        .glow-effect:hover::after {
-            opacity: 0.3;
-        }
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .crypto-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-red);
+}
 
-        /* Number formatting */
-        .pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #0b0f14 0%, #000 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: introFadeOut 0.9s ease forwards;
+  animation-delay: 2.6s;
+}
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
+.intro-logo-wrap {
+  width: 360px;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: logoEntry 1.8s ease forwards;
+}
 
-        /* Price direction indicators */
-        .price-up {
-            color: var(--accent-green);
-        }
+.intro-logo-img {
+  width: 100%;
+  height: auto;
+  filter:
+    drop-shadow(0 0 25px rgba(255, 46, 46, 0.6))
+    drop-shadow(0 0 50px rgba(255, 46, 46, 0.35));
+}
 
-        .price-down {
-            color: var(--accent-red);
-        }
+@keyframes logoEntry {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-15deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
 
-        .price-neutral {
-            color: var(--text-primary);
-        }
+@keyframes introFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+
+.header-logo {
+  filter:
+    drop-shadow(0 0 10px rgba(255, 46, 46, 0.6))
+    drop-shadow(0 0 20px rgba(255, 46, 46, 0.35));
+}
+
+.logo-inline {
+  filter:
+    drop-shadow(0 0 6px rgba(255, 46, 46, 0.5));
+}
