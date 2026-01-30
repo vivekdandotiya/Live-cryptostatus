@@ -1,4 +1,3 @@
-// ---------------- COIN CONFIG ----------------
 const COINS = [
   { id: 'bitcoin', name: 'Bitcoin', symbol: 'BTC', pair: 'btcusdt' },
   { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', pair: 'ethusdt' },
@@ -8,22 +7,18 @@ const COINS = [
   { id: 'ripple', name: 'XRP', symbol: 'XRP', pair: 'xrpusdt' },
   { id: 'polkadot', name: 'Polkadot', symbol: 'DOT', pair: 'dotusdt' },
   { id: 'avalanche', name: 'Avalanche', symbol: 'AVAX', pair: 'avaxusdt' },
-  
   { id: 'chainlink', name: 'Chainlink', symbol: 'LINK', pair: 'linkusdt' },
-  
   { id: 'polygon', name: 'Polygon', symbol: 'MATIC', pair: 'maticusdt' },
   { id: 'litecoin', name: 'Litecoin', symbol: 'LTC', pair: 'ltcusdt' },
-  
   { id: 'shiba-inu', name: 'Shiba Inu', symbol: 'SHIB', pair: 'shibusdt' },
-  
   { id: 'uniswap', name: 'Uniswap', symbol: 'UNI', pair: 'uniusdt' },
-  
   { id: 'stellar', name: 'Stellar', symbol: 'XLM', pair: 'xlmusdt' },
   { id: 'cosmos', name: 'Cosmos', symbol: 'ATOM', pair: 'atomusdt' }
 ];
 
 let cryptoData = [];
 let filteredData = [];
+let isSearching = false;
 
 function formatNumber(num) {
   if (num >= 1e12) return '$' + (num / 1e12).toFixed(2) + 'T';
@@ -40,9 +35,8 @@ function formatPrice(price) {
 }
 
 function initData() {
-  cryptoData = COINS.map((c, i) => ({
+  cryptoData = COINS.map(c => ({
     ...c,
-    image: `https://assets.coingecko.com/coins/images/${i + 1}/small/${c.id}.png`,
     current_price: 0,
     previousPrice: 0,
     price_change_percentage_24h: 0,
@@ -78,18 +72,18 @@ function startLiveSocket() {
     coin.previousPrice = prevPrice;
     coin.current_price = newPrice;
     coin.price_change_percentage_24h = parseFloat(msg.P);
-    coin.market_cap = parseFloat(msg.q); 
+    coin.market_cap = parseFloat(msg.q);
     coin.total_volume = parseFloat(msg.v);
 
-    filteredData = [...cryptoData];
+    if (!isSearching) {
+      filteredData = [...cryptoData];
+    }
+
     renderCryptoCards();
     updateMarketStats();
 
     document.getElementById('lastUpdate').textContent = 'Live';
   };
-
-  ws.onopen = () => console.log('✅ Binance WebSocket connected');
-  ws.onerror = err => console.error('❌ WebSocket error', err);
 }
 
 function updateMarketStats() {
@@ -153,10 +147,13 @@ function renderCryptoCards() {
 }
 
 function filterCryptos(term) {
+  isSearching = term.length > 0;
+
   filteredData = cryptoData.filter(c =>
     c.name.toLowerCase().includes(term) ||
     c.symbol.toLowerCase().includes(term)
   );
+
   renderCryptoCards();
 }
 
